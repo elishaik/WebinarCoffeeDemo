@@ -282,16 +282,16 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
-    <Content Include="Views\Coffees\Create.cshtml" />
-    <Content Include="Views\Coffees\Delete.cshtml" />
-    <Content Include="Views\Coffees\Details.cshtml" />
-    <Content Include="Views\Coffees\Edit.cshtml" />
-    <Content Include="Views\Coffees\Index.cshtml" />
     <Content Include="Views\Companies\Create.cshtml" />
     <Content Include="Views\Companies\Delete.cshtml" />
     <Content Include="Views\Companies\Details.cshtml" />
     <Content Include="Views\Companies\Edit.cshtml" />
     <Content Include="Views\Companies\Index.cshtml" />
+    <Content Include="Views\Coffees\Create.cshtml" />
+    <Content Include="Views\Coffees\Delete.cshtml" />
+    <Content Include="Views\Coffees\Details.cshtml" />
+    <Content Include="Views\Coffees\Edit.cshtml" />
+    <Content Include="Views\Coffees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\App_Data\" />
