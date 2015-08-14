@@ -18,7 +18,8 @@ namespace WebinarCoffeeDemo.Controllers
         // GET: Coffees
         public async Task<ActionResult> Index()
         {
-            return View(await db.Coffees.ToListAsync());
+            var coffees = db.Coffees.Include(c => c.Company);
+            return View(await coffees.ToListAsync());
         }
 
         // GET: Coffees/Details/5
@@ -39,6 +40,7 @@ namespace WebinarCoffeeDemo.Controllers
         // GET: Coffees/Create
         public ActionResult Create()
         {
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "CompanyName");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace WebinarCoffeeDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Volume")] Coffee coffee)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Volume,CompanyId")] Coffee coffee)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace WebinarCoffeeDemo.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "CompanyName", coffee.CompanyId);
             return View(coffee);
         }
 
@@ -71,6 +74,7 @@ namespace WebinarCoffeeDemo.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "CompanyName", coffee.CompanyId);
             return View(coffee);
         }
 
@@ -79,7 +83,7 @@ namespace WebinarCoffeeDemo.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Volume")] Coffee coffee)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Volume,CompanyId")] Coffee coffee)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace WebinarCoffeeDemo.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.CompanyId = new SelectList(db.Companies, "Id", "CompanyName", coffee.CompanyId);
             return View(coffee);
         }
 
